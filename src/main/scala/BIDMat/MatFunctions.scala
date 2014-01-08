@@ -845,6 +845,13 @@ object MatFunctions {
     }
   }
   
+  def LDAgibbs(A:Mat, B:Mat, AN:Mat, BN:Mat, C:Mat, nsamps:Float):Unit = {
+    (A, B, AN, BN, C) match {
+    	case (a:GMat, b:GMat, an:GMat, bn:GMat, c:GSMat) => GSMat.LDAgibbs(a, b, an, bn, c, nsamps):Unit
+    	case _ => throw new RuntimeException("type not implemented")
+    }
+  }
+  
   def fsqrt(v:Float):Float = math.sqrt(v).asInstanceOf[Float]
   
   def mapfun2x2(fn:(Float, Float)=>(Float, Float), in0:FMat, in1:FMat, out0:FMat, out1:FMat) = {
